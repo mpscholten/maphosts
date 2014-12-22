@@ -13,12 +13,6 @@ class HostManager
     @verbose = verbose
   end
 
-  def log(symbol, hostname, status)
-    if @verbose
-      puts "#{symbol} #{hostname} #{status}"
-    end
-  end
-
   def patch
     migrate_hosts(@section, @hostsfile, @hosts)
 
@@ -47,27 +41,34 @@ class HostManager
     end
   end
 
-  def init_section(identifier)
-    @section = @hostsfile.elements.find {|e| e.respond_to?(:name) && e.name == identifier}
-
-    if !@section
-      @section = Hosts::Section.new(identifier)
-      @hostsfile.elements << @section
-    end
-
-    @section
-  end
-
-  def migrate_hosts(section, hostsfile, hosts)
-    hosts.each do |hostname|
-      host = hostsfile.elements.find { |h| h.respond_to?(:name) && h.name == hostname }
-
-      if host
-        hostsfile.elements.delete host
-        section.elements << host
-
-        log '*', hostname, "will be migrated"
+  private
+    def log(symbol, hostname, status)
+      if @verbose
+        puts "#{symbol} #{hostname} #{status}"
       end
     end
-  end
+
+    def init_section(identifier)
+      @section = @hostsfile.elements.find {|e| e.respond_to?(:name) && e.name == identifier}
+
+      if !@section
+        @section = Hosts::Section.new(identifier)
+        @hostsfile.elements << @section
+      end
+
+      @section
+    end
+
+    def migrate_hosts(section, hostsfile, hosts)
+      hosts.each do |hostname|
+        host = hostsfile.elements.find { |h| h.respond_to?(:name) && h.name == hostname }
+
+        if host
+          hostsfile.elements.delete host
+          section.elements << host
+
+          log '*', hostname, "will be migrated"
+        end
+      end
+    end
 end
