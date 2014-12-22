@@ -1,7 +1,7 @@
 maphosts
 ========
 
-Small command line application for keeping your projects hostnames in sync with `/etc/hosts`.
+Small command line application for keeping your project hostnames in sync with `/etc/hosts`.
 
 ### Usage ###
 
@@ -25,3 +25,14 @@ up:
     maphosts {www.,static.,}example.lo --to `boot2docker ip`
     docker start example-www
     docker start example-static
+```
+
+### Tests ###
+
+You can run the `rspec` suite with rake
+    
+    rake spec
+    
+### Contributing ###
+
+Feel free to send pull requests!
