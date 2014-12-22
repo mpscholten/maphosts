@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = ''
   s.authors = ['Marc Scholten']
   s.email = 'marc@pedigital.de'
-  s.homepage = 'https://www.github.com/mpscholten/hosts-manager'
+  s.homepage = 'https://github.com/mpscholten/maphosts'
   s.license = 'MIT'
 
   s.files = ['lib/host_manager.rb']
