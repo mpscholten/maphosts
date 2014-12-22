@@ -2,12 +2,11 @@
 require File.dirname(__FILE__) + '/../lib/host_manager.rb'
 
 hostsfile_path = '/etc/hosts'
-config_path = nil
 ip = '127.0.0.1'
 verbose = false
 
 OptionParser.new do |options|
-  options.banner = "Usage: #{File.basename(__FILE__)}"
+  options.banner = "Usage: #{File.basename(__FILE__)} hosts..."
 
   options.on "-t", "--to IP" do |value|
     ip = value
@@ -17,27 +16,18 @@ OptionParser.new do |options|
     hostsfile_path = path
   end
 
-  options.on "-c", "--config FILE" do |path|
-    config_path = 'hosts'
-  end
-
   options.on "-v", "--verbose" do
     verbose = true
   end
 end.parse!
 
 
-[config_path, hostsfile_path].each do |file|
-  if file && !File.exists?(file)
-    STDERR.puts "#{file}: no such file"
-    exit 1
-  end
+if !File.exists?(hostsfile_path)
+  STDERR.puts "#{hostsfile_path}: no such file"
+  exit 1
 end
 
 hosts = ARGV
-if config_path
-  hosts << File.readlines(config_path).each(&:strip!)
-end
 
 patch = HostManager.new(hostsfile_path, hosts, File.expand_path(Dir.pwd), ip, verbose).patch
 if !patch
