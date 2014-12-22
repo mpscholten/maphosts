@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.homepage = 'https://github.com/mpscholten/maphosts'
   s.license = 'MIT'
 
-  s.files = ['lib/host_manager.rb']
+  s.files = ['lib/maphosts/host_manager.rb']
   s.executables << 'maphosts'
 
   s.add_dependency 'hosts', '~> 0.1'

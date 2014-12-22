@@ -1,5 +1,4 @@
 require 'hosts'
-require 'colorize'
 require 'optparse'
 require 'shellwords'
 

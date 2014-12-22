@@ -1,4 +1,4 @@
-require 'host_manager.rb'
+require 'maphosts/host_manager'
 require 'tempfile'
 
 def fixture(name)
