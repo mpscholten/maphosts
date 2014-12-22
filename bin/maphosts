@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby
+require File.dirname(__FILE__) + '/../lib/host_manager.rb'
+
+hostsfile_path = '/etc/hosts'
+config_path = nil
+ip = '127.0.0.1'
+verbose = false
+
+OptionParser.new do |options|
+  options.banner = "Usage: #{File.basename(__FILE__)}"
+
+  options.on "-t", "--to IP" do |value|
+    ip = value
+  end
+
+  options.on "-h", "--hostsfile FILE" do |path|
+    hostsfile_path = path
+  end
+
+  options.on "-c", "--config FILE" do |path|
+    config_path = 'hosts'
+  end
+
+  options.on "-v", "--verbose" do
+    verbose = true
+  end
+end.parse!
+
+
+[config_path, hostsfile_path].each do |file|
+  if file && !File.exists?(file)
+    STDERR.puts "#{file}: no such file"
+    exit 1
+  end
+end
+
+hosts = ARGV
+if config_path
+  hosts << File.readlines(config_path).each(&:strip!)
+end
+
+patch = HostManager.new(hostsfile_path, hosts, File.expand_path(Dir.pwd), ip, verbose).patch
+if !patch
+  puts "No update of #{hostsfile_path} required"
+  exit
+end
+
+puts "Updating #{hostsfile_path}"
+begin
+  patch.write
+rescue
+  puts "Unable to write to #{hostsfile_path}. Trying again as root.".yellow
+  cmd = "echo #{patch.to_s.shellescape} > #{hostsfile_path.shellescape}"
+
+  begin
+    `sudo /bin/sh -c #{cmd.shellescape}`
+  rescue Interrupt
+    puts "\n" + patch.to_s
+    puts "\nYou can also apply the patch by coping the lines above to #{hostsfile_path} by hand.".red
+  end
+end
