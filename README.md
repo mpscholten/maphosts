@@ -3,6 +3,10 @@ maphosts
 
 Small command line application for keeping your project hostnames in sync with `/etc/hosts`.
 
+### Get started ###
+
+    gem install maphosts
+
 ### Usage ###
 
     maphosts {www.,static.,}example.lo
