@@ -1,6 +1,7 @@
 maphosts
 ========
 [![Gem Version](https://badge.fury.io/rb/maphosts.png)](http://rubygems.org/gems/maphosts)
+[![Circle CI](https://circleci.com/gh/mpscholten/maphosts.svg?style=shield)](https://circleci.com/gh/mpscholten/maphosts)
 
 Small command line application for keeping your project hostnames in sync with `/etc/hosts`.
 
