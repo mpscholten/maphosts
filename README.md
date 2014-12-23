@@ -1,7 +1,16 @@
 maphosts
 ========
+[![Gem Version](https://badge.fury.io/rb/maphosts.png)](http://rubygems.org/gems/maphosts)
+[![Circle CI](https://circleci.com/gh/mpscholten/maphosts.svg?style=shield)](https://circleci.com/gh/mpscholten/maphosts)
 
 Small command line application for keeping your project hostnames in sync with `/etc/hosts`.
+
+Use it within your startup script (`make up`, shell scripts, etc.) to provide a `vagrant up`-like experience
+so people can start coding without spending time setting up and updating `/etc/hosts` by hand.
+
+### Get started ###
+
+    gem install maphosts
 
 ### Usage ###
 
