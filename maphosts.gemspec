@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'maphosts'
-  s.version = '0.0.1'
+  s.version = '0.2'
   s.date = '2014-12-22'
   s.summary = 'Keeps your project hostnames in sync with /etc/hosts'
   s.description = 'Small command line application for keeping your project hostnames in sync with /etc/hosts'
