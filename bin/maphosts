@@ -6,7 +6,7 @@ hostsfile_path = '/etc/hosts'
 ip = '127.0.0.1'
 verbose = false
 
-OptionParser.new do |options|
+option_parser = OptionParser.new do |options|
   options.banner = "Usage: #{File.basename(__FILE__)} hosts..."
 
   options.on "-t", "--to IP" do |value|
@@ -20,7 +20,14 @@ OptionParser.new do |options|
   options.on "-v", "--verbose" do
     verbose = true
   end
-end.parse!
+end
+
+begin
+  option_parser.parse!
+rescue OptionParser::MissingArgument => e
+  STDERR.puts e.message
+  exit 1
+end
 
 
 if !File.exists?(hostsfile_path)
