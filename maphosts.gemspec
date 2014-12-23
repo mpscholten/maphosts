@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.files = ['lib/maphosts/host_manager.rb']
   s.executables << 'maphosts'
 
+  s.required_ruby_version = '~> 2.0'
   s.add_dependency 'hosts', '~> 0.1'
   s.add_dependency 'colorize', '~> 0.7'
   s.add_development_dependency 'rspec'
