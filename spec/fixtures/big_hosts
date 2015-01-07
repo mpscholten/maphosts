@@ -1,0 +1,12 @@
+# Some comment
+127.0.0.1 localhost
+::1       localhost
+
+# Some Stuff
+192.0.0.1 myapp.lo
+192.0.0.2 mydb.lo
+
+127.0.0.1 app.example.lo
+
+# Some other stuff
+127.0.0.1 helloworld.lo

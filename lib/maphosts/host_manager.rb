@@ -36,7 +36,12 @@ class HostManager
     if !@dirty
       nil
     else
-      @hostsfile.to_s.strip!
+      # Strip whitespace at end of file
+      if !@hostsfile.elements.last.nil? && @hostsfile.elements.last.kind_of?(Hosts::EmptyElement)
+        @hostsfile.elements.delete @hostsfile.elements.last
+      end
+
+      @hostsfile
     end
   end
 

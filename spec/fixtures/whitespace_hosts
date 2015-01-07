@@ -1,0 +1,5 @@
+127.0.0.1 localhost
+# -----BEGIN SECTION maphosts - tests-----
+127.0.0.2 www.example.lo
+# -----END SECTION maphosts - tests-----
+
