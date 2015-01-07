@@ -41,6 +41,10 @@ class HostManager
         @hostsfile.elements.delete @hostsfile.elements.last
       end
 
+      if @hostsfile.to_s.empty?
+        raise "The patched hostsfile is empty. This is most likely due to a bug. No worry, the file has not been written."
+      end
+
       @hostsfile
     end
   end
