@@ -15,8 +15,8 @@ so people can start coding without spending time setting up and updating `/etc/h
 ### Usage ###
 
     maphosts {www.,static.,}example.lo
-    
-    
+
+
 This will add www.example.lo, static.example.lo and example.lo to your `/etc/hosts`. The tool will only update parts of your `/etc/hosts` which requires the update to preserve the original formatting. When required and with your permission the tool uses sudo to write to `/etc/hosts`.
 
 By default the hosts will point to `127.0.0.1` but you can provide a custom ip address with the `--to` option.
@@ -29,7 +29,7 @@ This will do the same as above but will point these hosts to your boot2docker vm
 
 ```make
 # Example of a docker startup script with maphosts
-# Developers just run `make up` and can start hacking 
+# Developers just run `make up` and can start hacking
 up:
     maphosts --to $(boot2docker ip) {www.,static.,}example.lo
     docker start example-www
@@ -39,9 +39,9 @@ up:
 ### Tests ###
 
 You can run the `rspec` suite with rake
-    
+
     rake spec
-    
+
 ### Contributing ###
 
 Feel free to send pull requests!
