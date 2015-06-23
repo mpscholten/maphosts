@@ -54,6 +54,6 @@ rescue
     `sudo /bin/sh -c #{cmd.shellescape}`
   rescue Interrupt
     puts "\n" + patch.to_s
-    puts "\nYou can also apply the patch by coping the lines above to #{hostsfile_path} by hand.".red
+    puts "\nYou can also apply the patch by copying the lines above to #{hostsfile_path} by hand.".red
   end
 end
